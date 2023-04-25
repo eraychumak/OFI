@@ -1,74 +1,52 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Online Feedback Insight (OFI)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This system is built with the Laravel 6 PHP framework. It relies on using the [Laravel 6 - Development Container](https://github.com/Edge-Hill-Univeristy-Web/CIS2167-Laravel-6) repository created by Edge Hill University to develop and run. Additionally, the project relies on the [MariaDB Docker Image](https://hub.docker.com/_/mariadb) container for the database.
 
-## About Laravel
+This repository is the implementation part of coursework two for the CIS2167 - Server & Client Side Scripting module at Edge Hill University.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Running the system (setup)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Prerequisites
+You will need the following before starting:
+- `Visual Studio Code` (VSC)
+- VSC `Dev Containers` extension
+- `Git`
+- `Docker`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Detailed steps
+The following steps assume no prior setup, you may skip to step 5 if a MariaDB container already exists and is connected to the `devnet` virtual network.
 
-## Learning Laravel
+#### MariaDB
+1. Run `docker pull mariadb` to pull the image.
+2. Run `docker run -p 3306:3306 --detach --name MariaDB --env MARIADB_USER=<YOUR-NAME> --env MARIADB_PASSWORD=webdev --env MARIADB_ROOT_PASSWORD=password  mariadb:latest` to create a container using the image.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### Docker Virtual Network 
+3. Run `docker network create devnet` to create the virtual network for the dev and database containers to communicate between each other.
+4. Run `docker network connect devnet MariaDB` to connect the database container to the virtual network.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Cloning the project
+5. Create an empty project folder called `OFI` for where the dev container will be put into.
+6. Download the [Laravel 6 - Development Container](https://github.com/Edge-Hill-Univeristy-Web/CIS2167-Laravel-6) as a zip folder.
+7. Extract the folder contents into the empty `OFI` project folder.
+8. Open the `OFI` project folder in VSC.
+9. Go to View > Command Palette... and type in Open Folder in Container....
+10. Git clone the `OFI` repository inside the root of the dev container.
 
-## Laravel Sponsors
+#### Installing dependancies
+11. Run `composer install` inside the cloned repository _(it will also be called OFI)_.
+12. Run `cp .env.example .env` to create a `.env` file.
+13. Run `php artisan key:generate`.
+14. Run `docker network rename <current_project_container_name> OFI` to rename the docker container for the project.
+15. Run `docker network connect devnet OFI` to connect the project docker container to the virtual network.
+16. Fill in the `.env` file to connect the database to the project, use `docker network inspect devnet` to find the IPs:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+DB_CONNECTION=mysql
+DB_HOST=<DEVNET_MARIADB_IP>
+DB_PORT=3306
+DB_DATABASE=ofi
+DB_USERNAME=root
+DB_PASSWORD=password 
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+17. Run `php artisan serve` to run the application.
