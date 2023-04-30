@@ -36,6 +36,11 @@
         color: red;
       }
 
+      .radioField {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+      }
     </style>
     @yield("styles")
   </head>
