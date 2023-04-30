@@ -4,6 +4,25 @@ This system is built with the Laravel 6 PHP framework. It relies on using the [L
 
 This repository is the implementation part of coursework two for the CIS2167 - Server & Client Side Scripting module at Edge Hill University.
 
+## Screenshot previews
+![Questionnaire Preview](./screenshots/desktop/questionnaire.png)
+
+<details>
+<summary>Mobile previews</summary>
+
+<details>
+<summary>Questionnaire admin mode preview</summary>
+
+![Questionnaire Admin Mode Preview](./screenshots/mobile/adminMode.png)
+</details>
+
+<details>
+<summary>Questionnaire responses preview</summary>
+
+![Questionnaire Responses Preview](./screenshots/mobile/responses.png)
+</details>
+</details>
+
 ## Running the system (setup)
 
 ### Prerequisites
@@ -23,7 +42,7 @@ The following steps assume no prior setup, you may skip to step 5 if a MariaDB c
 4. Run `mysql -u root -p` and enter `password` as the password.
 5. Run `CREATE DATABASE ofi;` to create the `ofi` database for the application to use.
 
-#### Docker Virtual Network 
+#### Docker Virtual Network
 6. Run `docker network create devnet` to create the virtual network for the dev and database containers to communicate between each other.
 7. Run `docker network connect devnet MariaDB` to connect the database container to the virtual network.
 
