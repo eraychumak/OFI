@@ -14,7 +14,7 @@ class QuestionController extends Controller
     public function create(Questionnaire $questionnaire)
     {
         if (Gate::denies("update-questionnaire", $questionnaire)) {
-            request()->session()->flash('err-msg', 'You do not own this questionnaire.');
+            request()->session()->flash('err-msg', 'You do not own this questionnaire to perform changes on it.');
             return redirect("/questionnaires/" . $questionnaire->id);
         }
     
@@ -24,7 +24,7 @@ class QuestionController extends Controller
     public function show(Questionnaire $questionnaire, Question $question)
     {
         if (Gate::denies("update-questionnaire", $questionnaire)) {
-            request()->session()->flash('err-msg', 'You do not own this questionnaire.');
+            request()->session()->flash('err-msg', 'You do not own this questionnaire to perform changes on it.');
             return redirect("/questionnaires/" . $questionnaire->id);
         }
 
@@ -35,7 +35,7 @@ class QuestionController extends Controller
     public function store(Questionnaire $questionnaire)
     {
         if (Gate::denies("update-questionnaire", $questionnaire)) {
-            request()->session()->flash('err-msg', 'You do not own this questionnaire.');
+            request()->session()->flash('err-msg', 'You do not own this questionnaire to perform changes on it.');
             return redirect("/questionnaires/" . $questionnaire->id);
         }
 
@@ -53,7 +53,7 @@ class QuestionController extends Controller
     public function update(Questionnaire $questionnaire, Question $question)
     {
         if (Gate::denies("update-questionnaire", $questionnaire)) {
-            request()->session()->flash('err-msg', 'You do not own this questionnaire.');
+            request()->session()->flash('err-msg', 'You do not own this questionnaire to perform changes on it.');
             return redirect("/questionnaires/" . $questionnaire->id);
         }
 
@@ -74,13 +74,13 @@ class QuestionController extends Controller
     public function destroy(Questionnaire $questionnaire, Question $question)
     {
         if (Gate::denies("update-questionnaire", $questionnaire)) {
-            request()->session()->flash('err-msg', 'You do not own this questionnaire.');
+            request()->session()->flash('err-msg', 'You do not own this questionnaire to perform changes on it.');
             return redirect("/questionnaires/" . $questionnaire->id);
         }
 
         $question->choices()->delete();
         $question->delete();
 
-        return redirect("/questionnaires/" . $questionnaire->id);
+        return redirect("/questionnaires/" . $questionnaire->id . "/edit");
     }
 }

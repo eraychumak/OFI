@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define("update-questionnaire", function($user, $questionnaire) {
             return $user->id === $questionnaire->user_id
                 ? Response::allow()
-                : Response::deny("You do not own this questionnaire.");
+                : Response::deny("You do not own this questionnaire to perform changes on it.");
         });
     }
 }

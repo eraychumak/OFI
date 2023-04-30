@@ -25,7 +25,7 @@ class QuestionnaireController extends Controller
     public function edit(Questionnaire $questionnaire)
     {
         if (Gate::denies("update-questionnaire", $questionnaire)) {
-            request()->session()->flash('err-msg', 'You do not own this questionnaire.');
+            request()->session()->flash('err-msg', 'You do not own this questionnaire to perform changes on it.');
             return redirect("/questionnaires/" . $questionnaire->id);
         }
 
