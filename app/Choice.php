@@ -26,4 +26,10 @@ class Choice extends Model
     {
         return $this->hasMany(Response::class);
     }
+
+    public function responseRate()
+    {
+        $respondents = $this->question->questionnaire->respondents()->count();
+        return ($this->responses->count() / $respondents) * 100;
+    }
 }
