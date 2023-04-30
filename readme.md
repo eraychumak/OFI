@@ -57,4 +57,4 @@ DB_PASSWORD=password
 21. Run `php artisan migrate:fresh --seed` to create the necessary tables and seed them with data.
 
 #### Running application
-20. Run `php artisan serve` to run the application.
+22. Run `php artisan serve` to run the application.
