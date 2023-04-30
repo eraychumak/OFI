@@ -2,8 +2,11 @@
 
 @section("styles")
 <style>
-  .important {
-    color: red;
+  main header nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
   }
 </style>
 @endsection
@@ -11,17 +14,22 @@
 @section("main")
 <main>
   <header>
-    <p>Questionnaire - Admin Mode</p>
-    <h1>{{ $questionnaire->title }}</h1>
-    <p>Description: <i>{{ $questionnaire->description }}</i></p>
-  </header>
+    <nav>
+      <a class="goBack" href="/">Go back</a>
   @auth
-    @if($questionnaire->user->id == auth()->user()->id)
+        @can("update-questionnaire", $questionnaire)
+          <a href="/questionnaires/{{ $questionnaire->id }}/responses">View responses ({{ $questionnaire->respondents->count() }})</a>
       <a href="/questionnaires/{{ $questionnaire->id }}">View as respondent</a>
-      <a href="/questionnaires/{{ $questionnaire->id }}/responses">View responses</a>
-    @endif
+        @endcan
   @endauth
-  <h2>Update questionnaire details</h2>
+    </nav>
+    <p class="tag">Questionnaire - Admin Mode</p>
+    <h1>{{ $questionnaire->title }}</h1>
+  </header>
+  <section>
+    <header>
+      <h2>Update questionnaire</h2>
+    </header>
   <form action="/questionnaires/{{ $questionnaire->id }}/update" method="post">
     @csrf
     @method("PUT")

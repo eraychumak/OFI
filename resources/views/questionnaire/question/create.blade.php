@@ -1,19 +1,15 @@
 @extends("layouts.app")
 
-@section("styles")
-<style>
-  .important {
-    color: red;
-  }
-</style>
-@endsection
-
 @section("main")
 <main>
-  <p>Questionnaire</p>
-  <a href="/questionnaires/{{ $questionnaire->id }}">{{ $questionnaire->title }}</a>
+  <header>
+    <nav>
+      <a class="goBack" href="/questionnaires/{{ $questionnaire->id }}/edit">Go back</a>
+    </nav>
+    <p class="tag">Questionnaire - Questions</p>
+    <p>{{ $questionnaire->title }}</p>
   <h1>Create a question</h1>
-  <a href="/questionnaires/{{ $questionnaire->id }}/edit">Go back</a>
+  </header>
   <form action="/questionnaires/{{ $questionnaire->id }}/questions/create" method="post">
     @csrf
     <div class="field">

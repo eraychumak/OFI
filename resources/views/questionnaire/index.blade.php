@@ -7,12 +7,12 @@
 
 @section("main")
 <main>
+  <header>
   <h1>Questionnaires</h1>
-
   @auth
     <a href="/questionnaires/create" id="createNewQuestionnaireBtn">Create a new questionnaire</a>
   @endauth
-
+  </header>
   @foreach($questionnaires as $questionnaire)
     <div class="questionnaire">
       <h2>

@@ -2,7 +2,10 @@
 
 @section("main")
 <main>
+  <header>
+    <a class="goBack" href="/">Go back</a>
   <h1>Create a questionnaire</h1>
+  </header>
   <form action="/questionnaires/create" method="post">
     @csrf
     <div class="field">

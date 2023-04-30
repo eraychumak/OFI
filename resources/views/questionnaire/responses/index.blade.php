@@ -33,9 +33,9 @@
 @section("main")
 <main>
   <header>
+    <a class="goBack noPrint" href="/questionnaires/{{ $questionnaire->id }}/edit">Go back</a>
     <p>Questionnaire - Responses</p>
     <h1>{{ $questionnaire->title }}</h1>
-    <p>Description: <i>{{ $questionnaire->description }}</i></p>
   </header>
   <a href="/questionnaires/{{ $questionnaire->id }}/edit">Go back</a>
   <h2>Respondents ({{ $questionnaire->respondents->count() }})</h2>

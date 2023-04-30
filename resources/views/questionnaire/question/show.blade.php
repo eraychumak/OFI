@@ -11,11 +11,13 @@
 @section("main")
 <main>
   <header>
-    <p>Questionnaire</p>
-    <a href="/questionnaires/{{ $questionnaire->id }}">{{ $questionnaire->title }}</a>
+    <nav>
+      <a class="goBack" href="/questionnaires/{{ $questionnaire->id }}/edit">Go back</a>
+    </nav>
+    <p class="tag">Questionnaire - Questions</p>
+    <p>{{ $questionnaire->title }}</p>
     <h1>Update question</h1>
   </header>
-  <a href="/questionnaires/{{ $questionnaire->id }}/edit">Go back</a>
   <form action="/questionnaires/{{ $questionnaire->id }}/questions/{{ $question->id }}" method="POST">
     @csrf
     @method("PUT")

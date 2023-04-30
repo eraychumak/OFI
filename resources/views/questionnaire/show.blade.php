@@ -1,17 +1,43 @@
 @extends("layouts.app")
 
+@section("styles")
+<style>
+  main header nav {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+@endsection
+
 @section("main")
 <main>
   <header>
-    <p>Questionnaire</p>
-    <h1>{{ $questionnaire->title }}</h1>
-    <p>Description: <i>{{ $questionnaire->description }}</i></p>
-  </header>
+    <nav>
+      <a class="goBack" href="/">Go back</a>
   @auth
     @can("update-questionnaire", $questionnaire)
       <a href="/questionnaires/{{ $questionnaire->id }}/edit">View as admin</a>
     @endcan
   @endauth
+    </nav>
+    <p class="tag">Questionnaire</p>
+    <h1>{{ $questionnaire->title }}</h1>
+    <div class="owner">
+      <p>
+        Published by:
+        @auth
+          @if(auth()->user()->id === $questionnaire->user->id)
+            <span class="bold">You</span>
+          @else
+            {{ $questionnaire->user->name }}
+          @endif
+        @else
+          {{ $questionnaire->user->name }}
+        @endauth
+      </p>
+      <div class="line"></div>
+    </div>
+  </header>
   <h2>Questions</h2>
   <form action="/questionnaires/{{ $questionnaire->id }}/submit" method="post">
     @csrf
