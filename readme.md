@@ -4,6 +4,9 @@ This system is built with the Laravel 6 PHP framework. It relies on using the [L
 
 This repository is the implementation part of coursework two for the CIS2167 - Server & Client Side Scripting module at Edge Hill University.
 
+## Figma Designs
+URL Preview: https://www.figma.com/file/oDhH2vLtCVKFkWL1w2AVBz/Online-Feedback-Insight
+
 ## Screenshot previews
 ![Questionnaire Preview](./screenshots/desktop/questionnaire.png)
 
