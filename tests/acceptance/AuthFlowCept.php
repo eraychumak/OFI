@@ -22,3 +22,4 @@ $I->fillField("password", "password");
 $I->click("#loginBtn");
 
 $I->see("Logged in as: Code Cept");
+$I->see("Logout");
