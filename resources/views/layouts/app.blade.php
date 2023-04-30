@@ -5,47 +5,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{{ URL::asset('css/global.css') }}" rel="stylesheet">
     <title>Online Feedback Insight</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-weight: normal;
-      }
-
-      html, body {
-        height: 100%;
-        width: 100%;
-      }
-
-      body {
-        padding: 5vh 5vw;
-      }
-
-      header {
-        margin-bottom: 3vh;
-      }
-
-      label {
-        display: block;
-      }
-
-      .important {
-        color: red;
-      }
-
-      .radioField {
-        display: flex;
-        align-items: center;
-        gap: .5rem;
-      }
-    </style>
     @yield("styles")
   </head>
   <body>
     @include("components.header")
+    @auth
+      @include("auth.components.nav")
+    @else
+      @include("components.nav")
+    @endauth
     @yield("main")
   </body>
 </html>

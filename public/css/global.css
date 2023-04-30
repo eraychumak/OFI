@@ -1,0 +1,212 @@
+:root {
+  --color-accent-darker: #d96300;
+  --color-accent: #fb8500;
+  --color-accent-lighter: #fef2e5;
+  --color-plain: #fff;
+  --color-success-darker: #148523;
+  --color-success: #36a745;
+  --color-secondary: #219ebc;
+  --radius: .3rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Roboto";
+  font-weight: 400;
+}
+
+.alertBox {
+  background: #ffcccc;
+  padding: 1rem;
+}
+
+main {
+  padding: 2vh 5vw;
+}
+
+main header {
+  margin-bottom: 1rem;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.goBack {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+header.top-level {
+  padding: 2vh 5vw;
+  background: #023047;
+  text-align: center;
+}
+
+header.top-level a {
+  color: #fff;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.tag {
+  margin-bottom: .3rem;
+  font-family: "Roboto Condensed";
+  font-weight: 400;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+nav.top-level {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: .5rem 5vw;
+  background: #FEE7CC;
+}
+
+nav.top-level.auth {
+  justify-content: space-between;
+}
+
+a.btn {
+  display: block;
+  padding: .5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  color: #000;
+}
+
+.btnAccent {
+  background: var(--color-accent);
+  color: var(--color-plain);
+}
+
+.btnPlain {
+  background: var(--color-plain);
+}
+
+.btnSuccess {
+  background: var(--color-success);
+}
+
+.btnSuccess:hover {
+  background: var(--color-success-darker);
+}
+
+.btnDelete {
+  padding: 0;
+  background: none;
+  color: red;
+}
+.btnDelete:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.concise {
+  font-size: .8rem;
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field label {
+  margin-bottom: .5rem;
+}
+
+input[type="text"], input[type="password"], textarea {
+  font-size: 1rem;
+  padding: .2rem;
+  width: 100%;
+  font-family: "Roboto";
+  border: solid .1rem black;
+  border-radius: var(--radius);
+  max-width: 100%;
+}
+
+button[type="submit"] {
+  margin-top: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+label {
+  display: block;
+}
+
+button {
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: var(--color-plain);
+  font-weight: 700; 
+  cursor: pointer;
+  transition: background 100ms ease-in-out; 
+}
+
+button:hover {
+  background: var(--color-accent-darker);
+}
+
+.important {
+  color: red;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+@media print {
+  .noPrint {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  header.top-level {
+    padding: 2vh 25vw;
+    text-align: left;
+  }
+
+  nav.top-level {
+    margin: 0 25vw;
+    padding: .5rem 1vw;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+
+  main {
+    padding: 2vh 25vw;
+  }
+
+  .fields {
+    max-width: 50%;
+  }
+}
