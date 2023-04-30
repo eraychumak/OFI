@@ -20,6 +20,7 @@ Route::post("/questionnaires/create", "QuestionnaireController@store")->middlewa
 Route::get("/questionnaires/{questionnaire}", "QuestionnaireController@show");
 Route::get("/questionnaires/{questionnaire}/edit", "QuestionnaireController@edit")->middleware("auth");
 Route::put("/questionnaires/{questionnaire}/update", "QuestionnaireController@update")->middleware("auth");
+Route::delete("/questionnaires/{questionnaire}", "QuestionnaireController@destroy")->middleware("auth");
 
 Route::post("/questionnaires/{questionnaire}/submit", "RespondentController@create");
 Route::get("/questionnaires/{questionnaire}/responses", "RespondentController@index")->middleware("auth");
