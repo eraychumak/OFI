@@ -1,6 +1,6 @@
 <?php 
 $I = new AcceptanceTester($scenario);
-$I->wantTo('perform actions and see result');
+$I->wantTo("create a questionnaire after logging in");
 
 $I->amOnPage("/");
 $I->see("Login");
