@@ -30,6 +30,7 @@ class QuestionnaireController extends Controller
         }
 
         $questionnaire->load("questions.choices");
+        $questionnaire->load("respondents");
         return view("questionnaire.edit", ["questionnaire" => $questionnaire]);
     }
 
@@ -80,5 +81,19 @@ class QuestionnaireController extends Controller
         $questionnaire->update($data);
 
         return redirect("/questionnaires/" . $questionnaire->id . "/edit");
+    }
+
+    public function destroy(Questionnaire $questionnaire)
+    {
+        if (Gate::denies("update-questionnaire", $questionnaire)) {
+            request()->session()->flash('err-msg', 'You do not own this questionnaire to perform changes on it.');
+            return redirect("/questionnaires/" . $questionnaire->id);
+        }
+        
+        $questionnaire->respondents()->delete();
+        $questionnaire->questions()->delete();
+        $questionnaire->delete();
+
+        return redirect("/");
     }
 }
