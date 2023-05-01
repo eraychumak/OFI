@@ -30,6 +30,6 @@ class Choice extends Model
     public function responseRate()
     {
         $respondents = $this->question->questionnaire->respondents()->count();
-        return ($this->responses->count() / $respondents) * 100;
+        return round(($this->responses->count() / $respondents) * 100);
     }
 }
